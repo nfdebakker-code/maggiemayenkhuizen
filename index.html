@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Airbnb Maggie May – Enkhuizen</title>
+  <meta name="description" content="Sfeervolle Airbnb in de historische binnenstad van Enkhuizen, op steenworp afstand van havens, winkelstraat, Zuiderzeemuseum en terrassen." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f172a;          /* slate-900 */
+      --card:#111827;        /* gray-900 */
+      --muted:#94a3b8;       /* slate-400 */
+      --text:#e5e7eb;        /* gray-200 */
+      --accent:#38bdf8;      /* sky-400 */
+      --accent-2:#fbbf24;    /* amber-400 */
+      --max:1200px;
+      --radius:18px;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,var(--bg),#0b1226 40%, #0a1021);color:var(--text);line-height:1.6}
+    a{color:inherit}
+    img{max-width:100%;display:block}
+    .container{max-width:var(--max);margin-inline:auto;padding:clamp(16px,3vw,28px)}
+    header{position:sticky;top:0;z-index:40;background:rgba(17,24,39,.7);backdrop-filter:saturate(150%) blur(12px);border-bottom:1px solid rgba(148,163,184,.15)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700}
+    .brand .dot{width:12px;height:12px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-2))}
+    .cta{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#0b1020;border:none;padding:12px 16px;border-radius:12px;font-weight:700;cursor:pointer;box-shadow:var(--shadow)}
+    .cta:hover{transform:translateY(-1px)}
+
+    .hero{isolation:isolate;position:relative}
+    .hero-wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
+    .hero h1{font-size:clamp(28px,4.5vw,48px);line-height:1.1;margin:0 0 10px}
+    .hero p{color:var(--muted);font-size:clamp(16px,2vw,18px)}
+    .pill{display:inline-flex;align-items:center;gap:8px;background:rgba(56,189,248,.12);border:1px solid rgba(56,189,248,.25);color:#cffafe;padding:8px 12px;border-radius:999px;font-size:14px;font-weight:600}
+    .card{background:linear-gradient(180deg,#0b1224,#0b1220);border:1px solid rgba(148,163,184,.15);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .hero-figure{position:relative;overflow:hidden;border-radius:var(--radius)}
+    .hero-figure::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 60% at 70% 20%, rgba(56,189,248,.25), transparent 60%)}
+
+    .grid{display:grid;gap:18px}
+    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    .grid.cols-2{grid-template-columns:repeat(2,1fr)}
+    @media (max-width:900px){
+      .hero-wrap{grid-template-columns:1fr}
+      .grid.cols-3{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width:640px){
+      .grid.cols-3, .grid.cols-2{grid-template-columns:1fr}
+    }
+
+    section{margin-top:40px}
+    h2{font-size:clamp(22px,3vw,28px);margin:0 0 10px}
+    .muted{color:var(--muted)}
+
+    .amenities{display:flex;flex-wrap:wrap;gap:12px;margin-top:10px}
+    .chip{border:1px solid rgba(148,163,184,.2);background:rgba(2,6,23,.6);padding:10px 12px;border-radius:12px}
+
+    .gallery{display:grid;grid-template-columns:2fr 1fr;gap:12px}
+    .gallery > div{display:grid;gap:12px}
+    .gallery img{border-radius:14px}
+
+    .footer{margin-top:60px;padding:24px 0;border-top:1px solid rgba(148,163,184,.15);color:var(--muted);font-size:14px}
+
+    /* Lightbox */
+    dialog#lightbox{border:none;border-radius:16px;padding:0;max-width:min(95vw,1100px);background:#050a19}
+    dialog::backdrop{background:rgba(2,6,23,.75)}
+    .lightbox-head{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid rgba(148,163,184,.2)}
+    .lightbox-body{padding:12px}
+    .x{appearance:none;background:transparent;border:1px solid rgba(148,163,184,.35);color:#cbd5e1;border-radius:10px;padding:6px 10px;cursor:pointer}
+
+    /* Map iframe wrapper */
+    .map-wrap{aspect-ratio:16/10;border-radius:16px;overflow:hidden;border:1px solid rgba(148,163,184,.15)}
+  </style>
+  
+  <!-- Structured data (minimal). Update address/phone when available. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LodgingBusiness",
+    "name": "Airbnb Maggie May",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Enkhuizen",
+      "addressCountry": "NL"
+    },
+    "amenityFeature": [
+      {"@type":"LocationFeatureSpecification","name":"Historische binnenstad"},
+      {"@type":"LocationFeatureSpecification","name":"Dichtbij havens en terrassen"}
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="container nav">
+      <div class="brand"><span class="dot"></span> Maggie May – Enkhuizen</div>
+      <nav style="display:flex;gap:14px">
+        <a href="#galerij" class="muted">Foto's</a>
+        <a href="#voorzieningen" class="muted">Voorzieningen</a>
+        <a href="#locatie" class="muted">Locatie</a>
+        <button class="cta" onclick="scrollToBooking()">Boek via Airbnb</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero container">
+    <div class="hero-wrap">
+      <div>
+        <span class="pill">Historische binnenstad · Vissersbuurt</span>
+        <h1>Sfeervol verblijf in <span style="background:linear-gradient(135deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent">Airbnb Maggie May</span></h1>
+        <p>
+          Gevestigd in de historische binnenstad (de Vissersbuurt) van Enkhuizen.
+          Op steenworp afstand van de havens, winkelstraat, het Zuiderzeemuseum,
+          gezellige terrassen en diverse attracties.
+        </p>
+        <div style="display:flex;gap:12px;margin-top:16px">
+          <button class="cta" onclick="scrollToBooking()">Boek via Airbnb</button>
+          <a class="chip" href="#galerij">Bekijk foto's</a>
+        </div>
+      </div>
+
+      <!-- NOTE: vervang de placeholder-afbeelding hieronder door een echte foto van het huis/buurt. -->
+      <div class="hero-figure card">
+        <img src="https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba?q=80&w=1600&auto=format&fit=crop" alt="Sfeervol straatje in historische binnenstad" />
+      </div>
+    </div>
+  </section>
+
+  <!-- USP CARDS -->
+  <section class="container grid cols-3">
+    <div class="card" style="padding:18px">
+      <h3 style="margin:0 0 6px">Centraal gelegen</h3>
+      <p class="muted" style="margin:0">Alles op loopafstand: havens, winkels, musea en terrassen.</p>
+    </div>
+    <div class="card" style="padding:18px">
+      <h3 style="margin:0 0 6px">Sfeervol & knus</h3>
+      <p class="muted" style="margin:0">Een warm welkom in onze gezellige Airbnb Maggie May.</p>
+    </div>
+    <div class="card" style="padding:18px">
+      <h3 style="margin:0 0 6px">Perfect voor een weekendje weg</h3>
+      <p class="muted" style="margin:0">Ontdek Enkhuizen en het Zuiderzeegevoel.</p>
+    </div>
+  </section>
+
+  <!-- VOORZIENINGEN -->
+  <section id="voorzieningen" class="container">
+    <h2>Voorzieningen</h2>
+    <p class="muted">Een greep uit wat je mag verwachten:</p>
+    <div class="amenities">
+      <span class="chip">Snel Wi‑Fi</span>
+      <span class="chip">Volledig ingerichte keuken</span>
+      <span class="chip">Comfortabel bed</span>
+      <span class="chip">Nespresso / waterkoker</span>
+      <span class="chip">Eigen entree</span>
+      <span class="chip">Nabij openbaar vervoer</span>
+      <span class="chip">Wandelroutes langs de havens</span>
+      <!-- Voeg/haal chips weg naar wens -->
+    </div>
+  </section>
+
+  <!-- GALERIJ -->
+  <section id="galerij" class="container">
+    <h2>Foto's</h2>
+    <p class="muted">Klik op een foto om te vergroten.</p>
+    <div class="gallery" data-gallery>
+      <div>
+        <img src="https://images.unsplash.com/photo-1505692794403-34d4982f88aa?q=80&w=1600&auto=format&fit=crop" alt="Sfeervolle kamer" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1600&auto=format&fit=crop" alt="Gezellige zithoek" loading="lazy">
+      </div>
+      <div>
+        <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?q=80&w=1200&auto=format&fit=crop" alt="Keuken" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3b2a59?q=80&w=1200&auto=format&fit=crop" alt="Badkamer" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?q=80&w=1200&auto=format&fit=crop" alt="Straatje Enkhuizen" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- BOEKEN -->
+  <section id="boeken" class="container">
+    <div class="card" style="padding:22px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px">
+      <div>
+        <h2 style="margin:0 0 4px">Boeken</h2>
+        <p class="muted" style="margin:0">Klik hieronder om direct via Airbnb te reserveren.</p>
+      </div>
+      <!-- Vervang # door de echte Airbnb-url -->
+      <a class="cta" id="airbnb-link" href="#" target="_blank" rel="noopener">Naar Airbnb</a>
+    </div>
+  </section>
+
+  <!-- LOCATIE / KAART -->
+  <section id="locatie" class="container">
+    <h2>Locatie</h2>
+    <p class="muted">Gelegen in de Vissersbuurt, historische binnenstad van Enkhuizen.</p>
+    <div class="map-wrap card">
+      <!-- TIP: vervang de query/coördinaten hieronder met het exacte adres zodra dat bekend is. -->
+      <iframe title="Kaart Enkhuizen" width="100%" height="100%" style="border:0" loading="lazy" allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9734.56640990323!2d5.282!3d52.703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c66f1c1b1b5a6b%3A0x7b3a8a2d9c8dc7a8!2sEnkhuizen!5e0!3m2!1snl!2snl!4v1680000000000"></iframe>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="container footer">
+    <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center">
+      <span>© <span id="year"></span> Maggie May · Enkhuizen</span>
+      <span class="muted">Website door Neal Bakker </span>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX DIALOG -->
+  <dialog id="lightbox">
+    <div class="lightbox-head">
+      <span class="muted">Foto</span>
+      <button class="x" onclick="lb.close()">Sluiten</button>
+    </div>
+    <div class="lightbox-body"><img id="lb-img" alt="Vergrote foto"></div>
+  </dialog>
+
+  <script>
+    // Jaar in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Smooth scroll naar boeken/CTA
+    function scrollToBooking(){
+      document.querySelector('#boeken').scrollIntoView({behavior:'smooth'});
+    }
+
+    // Lightbox
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lb-img');
+    document.querySelector('[data-gallery]').addEventListener('click', e => {
+      const img = e.target.closest('img');
+      if(!img) return;
+      lbImg.src = img.src;
+      lb.showModal();
+    });
+
+    // Stel hier je Airbnb-link in (of laat zoals is tot je de url hebt)
+    // document.getElementById('airbnb-link').href = 'https://airbnb.com/h/voorbeeld';
+  </script>
+
+  <!--
+    ✍️ Instructies om jouw content te plaatsen:
+    1) Vervang de hero-afbeelding en de galerij-foto's door eigen bestanden (bijv. /img/woonkamer.jpg).
+    2) Zet de echte Airbnb-URL bij #airbnb-link in het scriptgedeelte.
+    3) Pas Google Maps embed aan met het juiste adres of coördinaten.
+    4) Voeg/haal voorzieningen (chips) weg onder #voorzieningen.
+    5) Optioneel: voeg een pagina "Huisregels" of "Beschikbaarheid" toe.
+  -->
+</body>
+</html>
